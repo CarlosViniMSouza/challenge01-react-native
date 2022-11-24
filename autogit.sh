@@ -1,4 +1,4 @@
 git add .
-git commit -m "assets -> added"
+git commit -m "Header component -> done"
 git push -u origin main
 git status

@@ -11,6 +11,8 @@ import {
 import { Todo } from '../../components/Todo';
 import { styles } from './styles';
 
+import { Header } from '../../components/Header';
+
 export default function Home() {
     const [todos, setTodos] = useState<string[]>([]);
 
@@ -35,9 +37,7 @@ export default function Home() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>
-                Logo
-            </Text>
+            <Header />
 
             <View style={styles.form}>
                 <TextInput
