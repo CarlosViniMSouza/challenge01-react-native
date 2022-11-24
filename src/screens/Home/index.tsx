@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FlatList, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, FlatList, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Todo } from '../../components/Todo';
 
 import { styles } from './styles';
@@ -7,9 +7,24 @@ import { styles } from './styles';
 export default function Home() {
     const [todos, setTodos] = useState<string[]>([]);
 
-    function handleTodoAdd(name: string) { }
+    const [todoName, setTodoName] = useState('');
 
-    function handleTodoDelete(name: string) { }
+    function handleTodoAdd() {
+        if (todos.includes(todoName)) {
+            Alert.alert("ToDo already added");
+        }
+
+        setTodos(prevState => [...prevState, todoName]);
+
+        setTodoName('');
+    }
+
+    function handleTodoDelete(name: string) {
+        setTodos(prevState => prevState.filter(
+            todos => todos !== name
+        )
+        )
+    }
 
     return (
         <View style={styles.container}>
@@ -23,9 +38,15 @@ export default function Home() {
                     placeholder="Adicione uma nova tarefa"
                     placeholderTextColor="#6B6B6B"
                     keyboardType="email-address"
+                    onChangeText={setTodoName}
+                    value={todoName}
                 />
 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={
+                        () => handleTodoAdd()
+                    }>
                     <Text style={styles.buttonText}>
                         (+)
                     </Text>
@@ -43,6 +64,11 @@ export default function Home() {
                             () => handleTodoDelete(item)
                         }
                     />
+                )}
+                ListEmptyComponent={() => (
+                    <Text style={styles.listEmptyComponent}>
+                        You still don't have tasks registered!
+                    </Text>
                 )}
             />
         </View>
