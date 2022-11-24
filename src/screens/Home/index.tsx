@@ -1,7 +1,14 @@
 import { useState } from 'react';
-import { Alert, FlatList, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { Todo } from '../../components/Todo';
 
+import {
+    Alert,
+    FlatList,
+    Text, TextInput,
+    TouchableOpacity,
+    View
+} from 'react-native';
+
+import { Todo } from '../../components/Todo';
 import { styles } from './styles';
 
 export default function Home() {
