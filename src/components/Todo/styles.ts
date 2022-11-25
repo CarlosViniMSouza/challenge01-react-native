@@ -7,17 +7,14 @@ export const styles = StyleSheet.create({
         borderRadius: 5,
         flexDirection: "row",
         alignItems: "center",
-        marginBottom: 12,
+        marginBottom: 20
     },
     name: {
         flex: 1,
         fontSize: 16,
         color: "#FFF",
-        marginLeft: 16
-    },
-    buttonText: {
-        color: "#FFF",
-        fontSize: 24
+        marginLeft: 16,
+        marginRight: 12
     },
     button: {
         width: 56,
@@ -26,5 +23,6 @@ export const styles = StyleSheet.create({
         backgroundColor: "#E23C24",
         alignItems: "center",
         justifyContent: "center",
+        marginLeft: 7
     }
 });

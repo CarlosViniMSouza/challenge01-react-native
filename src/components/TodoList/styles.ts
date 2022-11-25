@@ -4,12 +4,12 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#131016",
-        padding: 24
+        padding: 16,
     },
     form: {
         width: "100%",
         flexDirection: "row",
-        marginTop: 36,
+        marginTop: 24,
         marginBottom: 42
     },
     buttonInput: {

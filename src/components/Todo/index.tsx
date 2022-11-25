@@ -27,6 +27,7 @@ export function Todo({ name, onRemove }: Props) {
             >
                 <Image
                     source={garbage}
+                    style={{ width: 32, height: 32 }}
                 />
             </TouchableOpacity>
         </View>
