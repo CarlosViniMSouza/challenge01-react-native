@@ -1,6 +1,4 @@
-<p>
-    <img src="./src/assets/images/projeto01-react-native.png" />
-</p>
+![img-logo](https://github.com/CarlosViniMSouza/challenge01-react-native/blob/main/src/assets/images/projeto01-react-native.jpg?raw=true)
 
 # Introdução
 
