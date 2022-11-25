@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Alert, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import { styles } from './styles';
 
-import Ionicons from '@expo/vector-icons/Ionicons';
-
 export function TodoForm() {
     const [todos, setTodos] = useState<string[]>([]);
+
     const [todoName, setTodoName] = useState('');
 
     function handleTodoAdd() {
@@ -23,7 +22,7 @@ export function TodoForm() {
         <View style={styles.container}>
             <TextInput
                 style={styles.input}
-                placeholder='Adicione uma nova tarefa'
+                placeholder='Add an new todo'
                 placeholderTextColor={'#808080'}
                 onChangeText={setTodoName}
                 value={todoName}
@@ -32,7 +31,6 @@ export function TodoForm() {
                 style={styles.button}
                 onPress={handleTodoAdd}
             >
-                <Ionicons name="add-circle-outline" size={20} color="#F2F2F2" />
             </TouchableOpacity>
         </View>
     );
