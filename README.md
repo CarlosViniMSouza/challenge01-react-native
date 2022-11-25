@@ -1,3 +1,5 @@
+![img-project]("./src/assets/images/projeto01-react-native.jpg")
+
 # Introdução
 
 Faala dev!
