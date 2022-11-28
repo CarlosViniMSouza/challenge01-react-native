@@ -2,41 +2,54 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: "#131016",
-        padding: 16,
+        width: '100%',
+        paddingHorizontal: 24,
+        flex: 1
     },
-    form: {
-        width: "100%",
-        flexDirection: "row",
-        marginTop: 24,
-        marginBottom: 42
+    progress: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingBottom: 20
     },
-    buttonInput: {
-        height: 56,
-        backgroundColor: "#1F1E25",
-        borderRadius: 5,
-        color: "#FFF",
-        padding: 16,
-        fontSize: 16,
-        flex: 1,
-        marginRight: 7
+    textGroup: {
+        flexDirection: 'row',
+        alignItems: 'center',
     },
-    button: {
-        width: 56,
-        height: 56,
-        borderRadius: 5,
-        backgroundColor: "#1E6F9F",
-        alignItems: "center",
-        justifyContent: "center"
+    created: {
+        fontFamily: 'Inter_700Bold',
+        color: '#4EA8DE',
+        fontSize: 14,
     },
-    buttonText: {
-        color: "#FFF",
-        fontSize: 24
+    finished: {
+        fontFamily: 'Inter_700Bold',
+        color: '#8284FA',
+        fontSize: 14,
     },
-    listEmptyComponent: {
-        color: "#FFF",
-        fontSize: 16,
-        textAlign: "center"
+    quantity: {
+        color: '#D9D9D9',
+        backgroundColor: '#333333',
+        fontSize: 12,
+        paddingHorizontal: 8,
+        paddingVertical: 1,
+        height: 19,
+        width: 25,
+        borderRadius: 10,
+        textAlign: 'center',
+        marginLeft: 8
+    },
+    emptyList: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 48,
+        borderColor: '#333333',
+        borderTopWidth: 1,
+    },
+    emptyListFirstText: {
+        fontFamily: 'Inter_700Bold',
+        color: '#808080'
+    },
+    emptyListSecondText: {
+        fontFamily: 'Inter_400Regular',
+        color: '#808080'
     }
 });

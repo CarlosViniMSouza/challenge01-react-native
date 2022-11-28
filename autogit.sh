@@ -1,4 +1,4 @@
 git add .
-git commit -m "I achieved! 🤣🤣🤣"
+git commit -m "Improving application"
 git push -u origin main
 git status

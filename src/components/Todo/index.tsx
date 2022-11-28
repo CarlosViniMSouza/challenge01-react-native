@@ -1,34 +1,39 @@
+import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 
-import {
-    View,
-    Text,
-    TouchableOpacity,
-    Image
-} from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
-type Props = {
-    name: string;
-    onRemove: () => void;
+type todoProps = {
+    title: string,
+    toggleCheckBox: boolean,
+    onChecked: () => void,
+    onRemove: () => void,
 }
 
-export function Todo({ name, onRemove }: Props) {
-    const garbage = require('../../assets/empty-list-icon.png');
+export function Todo(
+    { title, toggleCheckBox, onChecked, onRemove }: todoProps) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.name}>
-                {name}
+            <TouchableOpacity
+                style={toggleCheckBox ? styles.checked : styles.notChecked}
+                onPress={onChecked}
+            >
+                {toggleCheckBox ? <Ionicons name="checkmark-sharp" size={16} color="#F2F2F2" /> : null}
+            </TouchableOpacity>
+
+            <Text
+                style={toggleCheckBox ? styles.titleWhenChecked : styles.title}
+            >
+                {title}
             </Text>
 
+
             <TouchableOpacity
-                style={styles.button}
+                style={styles.garbage}
                 onPress={onRemove}
             >
-                <Image
-                    source={garbage}
-                    style={{ width: 32, height: 32 }}
-                />
+                <Ionicons name="trash-outline" size={24} color="#808080" />
             </TouchableOpacity>
         </View>
     )

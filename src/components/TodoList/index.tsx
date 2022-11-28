@@ -1,79 +1,79 @@
-import React, { useState } from 'react';
+import { View, Text, FlatList, Image } from 'react-native';
+import { useContext } from 'react';
+
 import { styles } from './styles';
 import { Todo } from '../Todo';
 
-import {
-    Alert,
-    FlatList,
-    View,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    Image
-} from 'react-native';
+import { Context, todoData } from '../../context/context';
 
 export function TodoList() {
-    const [todos, setTodos] = useState<string[]>([]);
+    const emptyListImage = require('../../assets/empty-list-icon-3x.png');
 
-    const [participantName, setParticipantName] = useState('');
+    const { todos, checkTodo, removeTodo } = useContext(Context);
 
-    const imgAdd = require('../../assets/add.png');
-
-    function handleTodoAdd() {
-        if (todos.includes(participantName)) {
-            return Alert.alert('Participant Already Added!');
-        }
-
-        setTodos(prevState => [...prevState, participantName]);
-
-        setParticipantName('');
+    function handleCheckBox(todo: todoData) {
+        checkTodo(todo);
     }
 
-    function handleTodoRemove(name: string) {
-        setTodos(prevState => prevState.filter(
-            todo => todo !== name
-        ));
+    function handleTodoRemove(todo: todoData) {
+        removeTodo(todo);
     }
 
     return (
         <View style={styles.container}>
-            <View style={styles.form}>
-                <TextInput
-                    style={styles.buttonInput}
-                    placeholder="Participant Name"
-                    placeholderTextColor="#6B6B6B"
-                    keyboardType="email-address"
-                    onChangeText={setParticipantName}
-                    value={participantName}
-                />
-
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={
-                        () => handleTodoAdd()
-                    }>
-                    <Image
-                        source={imgAdd}
-                    />
-                </TouchableOpacity>
+            <View style={styles.progress}>
+                <View style={styles.textGroup}>
+                    <Text style={styles.created}>
+                        Created Todos
+                    </Text>
+                    <Text style={styles.quantity}>
+                        {todos.length}
+                    </Text>
+                </View>
+                <View>
+                    <Text style={styles.finished}>
+                        Doned Todos
+                    </Text>
+                    <Text style={styles.quantity}>
+                        {
+                            todos.filter(
+                                todo => todo.isDone === true
+                            ).length
+                        }
+                    </Text>
+                </View>
             </View>
 
             <FlatList
+                showsVerticalScrollIndicator={false}
                 data={todos}
-                keyExtractor={item => item}
+                keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <Todo
-                        key={item}
-                        name={item}
-                        onRemove={
-                            () => handleTodoRemove(item)
-                        }
+                        key={item.id}
+                        title={item.description}
+                        onChecked={() => handleCheckBox(item)}
+                        toggleCheckBox={item.isDone}
+                        onRemove={() => handleTodoRemove(item)}
                     />
                 )}
                 ListEmptyComponent={() => (
-                    <Text style={styles.listEmptyComponent}>
-                        No todos in the list!
-                    </Text>
+                    <View style={styles.emptyList}>
+                        <Image
+                            style={{ marginBottom: 16, width: 56, height: 56 }}
+                            source={emptyListImage}
+                        />
+                        <Text
+                            style={styles.emptyListFirstText}
+                        >
+                            You don't have tasks registered yet
+                        </Text>
+                        <Text
+                            style={styles.emptyListSecondText}
+                        >
+                            Create todos and organize your items for do!
+                        </Text>
+                    </View>
                 )}
             />
         </View>
