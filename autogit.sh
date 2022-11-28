@@ -1,4 +1,4 @@
 git add .
-git commit -m "Improving application"
+git commit -m "Problems with: {todos.length}"
 git push -u origin main
 git status

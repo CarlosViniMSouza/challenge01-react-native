@@ -1,5 +1,5 @@
 import { View, Text, FlatList, Image } from 'react-native';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 import { styles } from './styles';
 import { Todo } from '../Todo';
@@ -10,6 +10,7 @@ export function TodoList() {
     const emptyListImage = require('../../assets/empty-list-icon-3x.png');
 
     const { todos, checkTodo, removeTodo } = useContext(Context);
+    // const [ todos, setTodos ] = useState<string[]>([]);
 
     function handleCheckBox(todo: todoData) {
         checkTodo(todo);

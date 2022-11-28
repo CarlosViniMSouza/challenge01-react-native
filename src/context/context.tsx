@@ -8,10 +8,10 @@ export interface todoData {
 }
 
 interface ContextData {
-    todos: todoData[],
     addTodo: (todoTask: todoData) => void,
     removeTodo: (todoTask: todoData) => void,
     checkTodo: (todoTask: todoData) => void,
+    todos: todoData[],
 }
 
 
@@ -21,18 +21,17 @@ export function ContextProvider({ children }: any) {
     const [todos, setTodos] = useState<todoData[]>([])
 
     function checkTodo(todoTask: todoData) {
-        setTodos(prevTasks => prevTasks.map(todo => {
+        setTodos(prevTodos => prevTodos.map(todo => {
             if (todo.id === todoTask.id) {
                 return {
                     id: todo.id,
                     description: todo.description,
                     isDone: !todo.isDone
                 }
-            }
-            else {
+            } else {
                 return todo;
             }
-        }))
+        }));
     }
 
     function addTodo(todoTask: todoData) {
@@ -45,26 +44,26 @@ export function ContextProvider({ children }: any) {
             return Alert.alert('This todo already exists!');
         }
 
-        setTodos(prevTasks => [...prevTasks, todoTask]);
+        setTodos(prevTodos => [...prevTodos, todoTask]);
     }
 
     function removeTodo(todoTask: todoData) {
         Alert.alert("Remove", 'Does you want delete this ToDo?', [
             {
                 text: 'Yes',
-                onPress: () => setTodos(prevTasks => prevTasks.filter(todo => todo.id !== todoTask.id))
+                onPress: () => setTodos(prevTodos => prevTodos.filter(todo => todo.id !== todoTask.id))
             },
             {
                 text: 'No',
                 style: 'cancel',
             }
-        ])
+        ]);
     }
 
     return (
-        <Context.Provider value={
-            { addTodo, todos, checkTodo, removeTodo }
-        }>
+        <Context.Provider
+            value={{ addTodo, checkTodo, removeTodo, todos }}
+        >
             {children}
         </Context.Provider>
     )
